@@ -8,12 +8,14 @@ dotenv.config();
 
 async function start() {
   try {
+
     console.log(process.env.DB_NAME);
     const PORT = process.env.PORT
     const app = await NestFactory.create(AppModule);
+    //in app add loging to console
+    
     app.use(cookieParser());
     app.useGlobalPipes(new ValidationPipe());
-
     const config = new DocumentBuilder()
       .setTitle("Stadium Finder")
       .setDescription("My stadium finder project REST API")
@@ -24,7 +26,10 @@ async function start() {
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
+
     SwaggerModule.setup("api/docs", app, document);
+    //end logging to console
+    
 
     await app.listen(PORT, () => {
       console.log(`Server running at port ${PORT}`);

@@ -26,11 +26,15 @@ export class AdminService {
     return this.adminRepository.findOne({ where: { username } });
   }
 
-  update(id: number, updateAdminDto: UpdateAdminDto) {
-    return this.adminRepository.update(id, updateAdminDto);
-  }
+  async update(id: number, updateUserDto: UpdateAdminDto) {
+    const result = await this.adminRepository.update({id}, updateUserDto);
+    console.log(result);
+    
+    return this.findOne(id);
+}
+
 
   remove(id: number) {
-    return this.adminRepository.delete(id);
+    return this.adminRepository.delete(id);         
   }
 }
