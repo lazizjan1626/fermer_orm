@@ -19,14 +19,32 @@ export class WorkersService {
   }
 
   findOne(id: number) {
-    return this.workerRepository.findOneBy({ id });
-  }
+    return this.workerRepository.findOneBy({ id }).then(worker => {
+        if (!worker) {
+            throw new Error(`Worker with ID ${id} not found`);
+        }
+        return worker;
+    });
+}
 
-  update(id: number, updateWorkerDto: UpdateWorkerDto) {
-    return this.workerRepository.update(id, updateWorkerDto);
-  }
 
-  remove(id: number) {
-    return this.workerRepository.delete(id);
-  }
+update(id: number, updateWorkerDto: UpdateWorkerDto) {
+    return this.workerRepository.update(id, updateWorkerDto).then(result => {
+        if (result.affected === 0) {
+            throw new Error(`Worker with ID ${id} not found`);
+        }
+        return result;
+    });
+}
+
+
+remove(id: number) {
+  return this.workerRepository.delete(id).then(result => {
+      if (result.affected === 0) {
+          throw new Error(`Worker with ID ${id} not found`);
+      }
+      return result;
+  });
+}
+
 }

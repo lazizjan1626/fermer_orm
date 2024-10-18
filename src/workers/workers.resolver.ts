@@ -3,7 +3,7 @@ import { WorkersService } from './workers.service';
 import { CreateWorkerDto } from './dto/create-worker.dto';
 import { UpdateWorkerDto } from './dto/update-worker.dto';
 import { Worker } from './models/worker.model';
-
+import { DeleteResult } from 'typeorm';
 
 @Resolver(() => Worker)
 export class WorkersResolver {
@@ -32,8 +32,9 @@ export class WorkersResolver {
     return this.workersService.update(+id, updateWorkerDto);
   }
 
-  @Mutation(() => Worker)
-  removeWorker(@Args('id') id: string) {
-    return this.workersService.remove(+id);
+  @Mutation(() => Boolean) 
+  async removeWorker(@Args('id') id: string): Promise<boolean> {
+    const result: DeleteResult = await this.workersService.remove(+id);
+    return !!result.affected;
   }
 }

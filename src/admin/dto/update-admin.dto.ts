@@ -4,7 +4,6 @@ import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateAdminDto extends PartialType(CreateAdminDto) {
-  // ID sifatida string yoki number ishlatishingiz mumkin (bu GraphQL kontekstida string sifatida ishlatiladi)
 
   @Field({ nullable: true })
   username?: string;

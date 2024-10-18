@@ -10,26 +10,103 @@ type Admin {
   username: String
 }
 
+type Animal {
+  birth_date: DateTime!
+  breads_id: Float!
+  father_id: Float!
+  id: ID!
+  mother_id: Float!
+  name: String
+  species_id: Float!
+}
+
 input CreateAdminDto {
   email: String!
   password: String!
   username: String
 }
 
+input CreateAnimalDto {
+  birth_date: DateTime!
+  breads_id: Float!
+  father_id: Float!
+  mother_id: Float!
+  name: String
+  species_id: Float!
+}
+
+input CreateWorkerDto {
+  age: Int!
+  experience: String!
+  hashed_token: String
+  name: String!
+  phone_number: String!
+  role_id: String
+  speciality_id: Float
+  worker_schedule: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Mutation {
   createAdmin(CreateAdmin: CreateAdminDto!): Admin!
+  createAnimal(createAnimal: CreateAnimalDto!): Animal!
+  createWorker(createWorker: CreateWorkerDto!): Worker!
   removeAdmin(id: ID!): ID!
+  removeAnimal(id: ID!): Animal!
+  removeWorker(id: String!): Boolean!
   updateAdmin(id: ID!, updateAdmin: UpdateAdminDto!): Admin!
+  updateAnimal(id: ID!, updateAnimal: UpdateAnimalDto!): Animal!
+  updateWorker(id: String!, updateWorker: UpdateWorkerDto!): Worker!
 }
 
 type Query {
   findAllAdmin: [Admin!]!
+  findAllAnimal: [Animal!]!
+  findAllWorkers: [Worker!]!
   findNameAdmin(id: ID!): String!
   findOneAdmin(id: ID!): Admin!
+  findOneAnimal(id: ID!): Animal!
+  findOneWorker(id: String!): Worker!
 }
 
 input UpdateAdminDto {
   email: String
   password: String
   username: String
+}
+
+input UpdateAnimalDto {
+  birth_date: DateTime
+  breads_id: Float
+  father_id: Float
+  mother_id: Float
+  name: String
+  species_id: Float
+}
+
+input UpdateWorkerDto {
+  age: Int
+  experience: String
+  hashed_token: String
+  id: Int!
+  name: String
+  phone_number: String
+  role_id: String
+  speciality_id: Int
+  worker_schedule: String
+}
+
+type Worker {
+  aga: Float!
+  experience: String!
+  hashed_token: String!
+  id: ID!
+  name: String
+  phone_number: String!
+  speciality_id: Float!
+  worker_schedule: String!
 }

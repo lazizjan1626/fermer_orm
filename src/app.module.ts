@@ -7,6 +7,11 @@ import { Admin } from './admin/modules/admin.module';
 import { Worker } from './workers/models/worker.model';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { AnimalModule } from './animal/animal.module';
+import { MedicalRecordsModule } from './medical_records/medical_records.module';
+import { VaccinationsModule } from './vaccinations/vaccinations.module';
+import { MilkProductModule } from './milk_product/milk_product.module';
+import { Animal } from './animal/entities/animal.entity';
 
 
 @Module({
@@ -29,14 +34,19 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       password: process.env.DB_PASSWORD || 'laziz2005',
       database: process.env.DB_NAME || 'fermer',
       entities: [Admin,
-        Worker
+        Worker,
+        Animal
       ],
       synchronize: true, 
     }),
     TypeOrmModule.forFeature([]),
     AdminModule,
     WorkersModule,
-    AuthModule, 
+    AuthModule,
+    AnimalModule,
+    MedicalRecordsModule,
+    VaccinationsModule,
+    MilkProductModule, 
   ],
   controllers: [],
   providers: [Logger],

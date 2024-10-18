@@ -28,8 +28,6 @@ export class AdminService {
 
   async update(id: number, updateUserDto: UpdateAdminDto) {
     const result = await this.adminRepository.update({id}, updateUserDto);
-    console.log(result);
-    
     return this.findOne(id);
 }
 
