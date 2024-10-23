@@ -12,6 +12,11 @@ import { MedicalRecordsModule } from './medical_records/medical_records.module';
 import { VaccinationsModule } from './vaccinations/vaccinations.module';
 import { MilkProductModule } from './milk_product/milk_product.module';
 import { Animal } from './animal/entities/animal.entity';
+import { FeedingSchudulesModule } from './feeding_schudules/feeding_schudules.module';
+import { BreadsModule } from './breads/breads.module';
+import { SpeciesModule } from './species/species.module';
+import { AnimalCaratacerModule } from './animal_caratacer/animal_caratacer.module';
+import { SheltersModule } from './shelters/shelters.module';
 
 
 @Module({
@@ -46,7 +51,12 @@ import { Animal } from './animal/entities/animal.entity';
     AnimalModule,
     MedicalRecordsModule,
     VaccinationsModule,
-    MilkProductModule, 
+    MilkProductModule,
+    FeedingSchudulesModule,
+    BreadsModule,
+    SpeciesModule,
+    AnimalCaratacerModule,
+    SheltersModule, 
   ],
   controllers: [],
   providers: [Logger],
